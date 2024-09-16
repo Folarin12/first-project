@@ -1,39 +1,29 @@
 import { useState } from 'react';
+import Background from "./Components/Background/Background";
+import Navbar from "./Components/Navbar/Navbar"
+import Hero from "./Components/Hero/Hero"
 
-function Square() {
-  const [value, setValue] = useState(null);
-  function handleClick() {
-    setValue('x');
-  }
- return (
- <button 
- className="square"
- onClick={handleClick}
- >
-   {value}
- </button>
- );
-}
 
-export default function Board() {
-  const [squares,setSquares]= useState(Array(9).fill(null));
+const App = () => {
+  let heroData = [
+    {text1: "Dive into",text2: "what you love"},
+     {text1: "indulge",text2: "your passion"},
+      {text1: "Give in to",text2: "your passions"},
+    ]
+    const [heroCount,setHeroCount]= useState(2);
+    const [playStatus,setPlayStatus]= useState(false);
   return (
-    <>
-      <div className="board-row">
-  <Square value={squares[0]}/>
-    <Square value={squares[1]}/>
-    <Square value={squares[2]}/>
-   </div>
-    <div className="board-row">
-    <Square value={squares[3]}/>
-    <Square value={squares[4]}/>
-    <Square value={squares[5]}/>
-   </div>
-    <div className="board-row">
-    <Square value={squares[6]}/>
-    <Square value={squares[7]}/>
-    <Square value={squares[8]}/>
-   </div>
-  </>
-  );
+    <div>
+     <Background playStatus={playStatus} heroCount={heroCount} />
+      <Navbar />
+      <hero 
+      setPlayStatus={setPlayStatus}
+      heroData={heroData[heroCount]}
+      heroCount={heroCount}
+      setHeroCount={setHeroCount}
+      playStatus={playStatus}
+      />
+    </div>
+    )
 }
+export default App
